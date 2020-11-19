@@ -44,7 +44,7 @@ return [
         ],
 
         'mysql' => array(
-            'host' => '127.0.0.1',
+            'host' => '209.134.156.132/phpmyadmin',
             'driver'    => 'mysql',
             'database'  => 'trackr',
             'username'  => 'root',

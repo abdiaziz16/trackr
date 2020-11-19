@@ -13,12 +13,21 @@ use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
 class User extends Authenticatabale implements LdapAuthenticatable
 {
     use Notifiable, AuthenticatesWithLdap;
-    /**
-     * The object classes of the LDAP model.
-     *
-     * @var array
-     */
-    public static $objectClasses = [];
 
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token' ,
+    ];
+
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }
