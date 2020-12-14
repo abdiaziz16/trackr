@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Schema;
-use LdapRecord\Laravel\Import;
 use LdapRecord\Laravel\ImportableFromLdap;
 use LdapRecord\Laravel\LdapImportable;
 use LdapRecord\Laravel\LdapImporter;
@@ -28,7 +27,6 @@ class LdapImporterTest extends TestCase
             $table->softDeletes();
             $table->string('guid')->unique()->nullable();
             $table->string('domain')->nullable();
-            $table->string('name')->nullable();
         });
 
         DirectoryEmulator::setup('default');
@@ -116,41 +114,6 @@ class LdapImporterTest extends TestCase
 
         $this->assertEquals($group->id, $imported->id);
         $this->assertTrue($imported->trashed());
-    }
-
-    public function test_class_based_import_works()
-    {
-        $object = LdapGroup::create([
-            'objectguid' => $this->faker->uuid,
-            'cn' => 'Group',
-        ]);
-
-        $imported = (new Import(LdapGroup::class))
-            ->into(Group::class)
-            ->syncAttributes(['name' => 'cn'])
-            ->execute();
-
-        $this->assertCount(1, $imported);
-        $this->assertEquals($object->getFirstAttribute('cn'), $imported->first()->name);
-    }
-
-    public function test_class_based_import_can_have_callable_importer()
-    {
-        $object = LdapGroup::create([
-            'objectguid' => $this->faker->uuid,
-            'cn' => 'Group',
-        ]);
-
-        $imported = (new Import(LdapGroup::class))
-            ->into(Group::class)
-            ->using(function ($database, $object) {
-                $database->name = $object->getFirstAttribute('cn');
-
-                $database->save();
-            })->execute();
-
-        $this->assertCount(1, $imported);
-        $this->assertEquals($object->getFirstAttribute('cn'), $imported->first()->name);
     }
 }
 

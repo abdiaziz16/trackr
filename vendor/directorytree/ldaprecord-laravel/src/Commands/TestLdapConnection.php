@@ -39,38 +39,25 @@ class TestLdapConnection extends Command
             $connections = Container::getInstance()->all();
         }
 
-        $tested = [];
+        $rows = [];
 
         foreach ($connections as $name => $connection) {
-            $tested[] = $this->performTest($name, $connection);
+            $this->info("Testing LDAP connection [$name]...");
+
+            $start = microtime(true);
+
+            $message = $this->attempt($connection);
+
+            $rows[] = [
+                $name,
+                $connection->isConnected() ? '✔ Yes' : '✘ No',
+                $connection->getConfiguration()->get('username'),
+                $message,
+                $this->getElapsedTime($start).'ms',
+            ];
         }
 
-        $this->table(['Connection', 'Successful', 'Username', 'Message', 'Response Time'], $tested);
-    }
-
-    /**
-     * Perform a connectivity test on the given connection.
-     *
-     * @param string     $name
-     * @param Connection $connection
-     *
-     * @return array
-     */
-    protected function performTest($name, Connection $connection)
-    {
-        $this->info("Testing LDAP connection [$name]...");
-
-        $start = microtime(true);
-
-        $message = $this->attempt($connection);
-
-        return [
-            $name,
-            $connection->isConnected() ? '✔ Yes' : '✘ No',
-            $connection->getConfiguration()->get('username'),
-            $message,
-            (app()->runningUnitTests() ? '0' : $this->getElapsedTime($start)).'ms',
-        ];
+        $this->table(['Connection', 'Successful', 'Username', 'Message', 'Response Time'], $rows);
     }
 
     /**

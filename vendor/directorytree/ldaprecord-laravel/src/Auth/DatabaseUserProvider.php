@@ -73,6 +73,19 @@ class DatabaseUserProvider extends UserProvider
     }
 
     /**
+     * Pass dynamic method calls into the Eloquent user provider.
+     *
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @return mixed
+     */
+    public function __call($method, $parameters)
+    {
+        return $this->eloquent->{$method}(...$parameters);
+    }
+
+    /**
      * Get the LDAP user importer.
      *
      * @return LdapUserImporter
@@ -199,7 +212,9 @@ class DatabaseUserProvider extends UserProvider
             return false;
         }
 
-        if ($model->save() && $model->wasRecentlyCreated) {
+        $model->save();
+
+        if ($model->wasRecentlyCreated) {
             event(new Imported($this->user, $model));
         }
 

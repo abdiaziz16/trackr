@@ -39,7 +39,7 @@ class LdapImporter
     }
 
     /**
-     * Import / synchronize the LDAP object with its database model.
+     * Import / synchronize the LDAP object.
      *
      * @param LdapModel $object
      * @param array     $data
@@ -48,60 +48,19 @@ class LdapImporter
      */
     public function run(LdapModel $object, array $data = [])
     {
-        return $this->synchronize(
-            $object, $this->createOrFindEloquentModel($object), $data
-        );
-    }
+        $eloquent = $this->createOrFindEloquentModel($object);
 
-    /**
-     * Synchronize the Eloquent database model with the LDAP model.
-     *
-     * @param LdapModel     $object
-     * @param EloquentModel $database
-     * @param array         $data
-     *
-     * @return EloquentModel
-     */
-    public function synchronize(LdapModel $object, EloquentModel $database, array $data = [])
-    {
-        if (! $database->exists) {
-            event(new Importing($object, $database));
+        if (! $eloquent->exists) {
+            event(new Importing($object, $eloquent));
         }
 
-        event(new Synchronizing($object, $database));
+        event(new Synchronizing($object, $eloquent));
 
-        $this->hydrate($object, $database, $data);
+        $this->hydrate($object, $eloquent, $data);
 
-        event(new Synchronized($object, $database));
+        event(new Synchronized($object, $eloquent));
 
-        return $database;
-    }
-
-    /**
-     * Retrieves an eloquent model by their GUID.
-     *
-     * @param LdapModel $ldap
-     *
-     * @return EloquentModel
-     *
-     * @throws LdapRecordException
-     */
-    public function createOrFindEloquentModel(LdapModel $ldap)
-    {
-        // We cannot import an LDAP object without a valid GUID
-        // identifier. Doing so would cause overwrites of the
-        // first database model that does not contain one.
-        if (is_null($guid = $ldap->getConvertedGuid())) {
-            throw LdapImportException::missingGuid($ldap);
-        }
-
-        $query = $this->newEloquentQuery(
-            $model = $this->createEloquentModel()
-        )->where($model->getLdapGuidColumn(), '=', $guid);
-
-        $this->applySyncScopesToQuery($ldap, $query);
-
-        return $query->first() ?? tap($model)->setAttribute($model->getLdapGuidColumn(), $guid);
+        return $eloquent;
     }
 
     /**
@@ -131,6 +90,33 @@ class LdapImporter
     protected function hydrator()
     {
         return EloquentHydrator::class;
+    }
+
+    /**
+     * Retrieves an eloquent model by their GUID.
+     *
+     * @param LdapModel $ldap
+     *
+     * @return EloquentModel
+     *
+     * @throws LdapRecordException
+     */
+    protected function createOrFindEloquentModel(LdapModel $ldap)
+    {
+        // We cannot import an LDAP object without a valid GUID
+        // identifier. Doing so would cause overwrites of the
+        // first database model that does not contain one.
+        if (is_null($guid = $ldap->getConvertedGuid())) {
+            throw LdapImportException::missingGuid($ldap);
+        }
+
+        $query = $this->newEloquentQuery(
+            $model = $this->createEloquentModel()
+        )->where($model->getLdapGuidColumn(), '=', $guid);
+
+        $this->applySyncScopesToQuery($ldap, $query);
+
+        return $query->first() ?? tap($model)->setAttribute($model->getLdapGuidColumn(), $guid);
     }
 
     /**
