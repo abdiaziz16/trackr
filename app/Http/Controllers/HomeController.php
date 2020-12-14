@@ -252,7 +252,7 @@ class HomeController extends Controller
             ->get();
         $pdf = PDF::loadVIew('request_report',compact('requests'));
 
-        return $pdf->download('requesuts.pdf');
+        return $pdf->download('requests.pdf');
     }
 
 

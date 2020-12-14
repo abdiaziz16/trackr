@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ad55b0f-a6eb-476b-b9e3-460f0d921b52" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Ldap/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ldap/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LdapUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LdapUserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/request_report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/request_report.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +157,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/smartq" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -185,7 +189,16 @@
       <workItem from="1605557471261" duration="3958000" />
       <workItem from="1605711844120" duration="8536000" />
       <workItem from="1605735788871" duration="3344000" />
-      <workItem from="1605743816369" duration="1662000" />
+      <workItem from="1605743816369" duration="6922000" />
+      <workItem from="1605804580852" duration="2145000" />
+      <workItem from="1605848593692" duration="3261000" />
+      <workItem from="1606230080635" duration="7000" />
+      <workItem from="1606689859261" duration="655000" />
+      <workItem from="1607366388400" duration="2273000" />
+      <workItem from="1607448035743" duration="16000" />
+      <workItem from="1607663074740" duration="621000" />
+      <workItem from="1607717195216" duration="2586000" />
+      <workItem from="1607916515373" duration="8715000" />
     </task>
     <servers />
   </component>
@@ -193,11 +206,11 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1605743835401">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1607701977942">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605336345094" />
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605743835401" />
+    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606752515381" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607701977942" />
     <state x="709" y="243" key="NewPhpClassDialog" timestamp="1605713965425">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -210,20 +223,24 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605744513854" />
-    <state x="667" y="253" width="585" height="624" key="find.popup" timestamp="1605744811873">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1920" y="0" width="1226" height="1027" maximized="true" key="dock-window-1" timestamp="1607931113623">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1253" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605337608963" />
-    <state x="667" y="253" width="585" height="624" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605744811873" />
+    <state x="-1920" y="0" width="1226" height="1027" maximized="true" key="dock-window-1/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607931113623" />
+    <state x="-1253" y="253" width="585" height="592" key="find.popup" timestamp="1607934290574">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1253" y="253" width="585" height="592" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607934290574" />
+    <state x="667" y="253" width="585" height="624" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607930879537" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1605387129325">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605387129325" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605744813902">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607934934066">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605337612949" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605744813902" />
+    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607934034186" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607934934066" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

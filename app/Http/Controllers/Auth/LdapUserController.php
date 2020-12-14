@@ -13,6 +13,7 @@ class LdapUserController extends Controller
     {
         $users = User::get();
 
+        var_dump('here');die();
         return view('ldap.users.index', ['users' => $users]);
     }
 }
