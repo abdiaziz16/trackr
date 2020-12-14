@@ -69,7 +69,7 @@ return [
 
         'ldap' =>[
             'driver' => 'ldap',
-            'model' => LdapRecord\Models\OpenLdap\User::class,
+            'model' => ldaprecord\Models\OpenLDap\User::class,
             'database' => [
                 'model' => App\Ldap\User::class,
                 'sync_passwords' => false,
